@@ -41,11 +41,11 @@ class Blog {
     }
 
     async save() {
-        await client.execute(`UPDATE ?? SET title = ?, content = ? WHERE slug = ?`, [tableName, this.title, this.content, this.slug]);
+        await client.execute('UPDATE ?? SET title = ?, content = ? WHERE slug = ?', [tableName, this.title, this.content, this.slug]);
     }
 
     async delete() {
-        await client.execute(`DELETE FROM ?? WHERE slug = ?`, [tableName, this.slug]);
+        await client.execute('DELETE FROM ?? WHERE slug = ?', [tableName, this.slug]);
     }
 }
 
