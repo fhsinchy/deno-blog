@@ -49,6 +49,15 @@ CREATE TABLE `blogs` (
   `slug` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+
+CREATE TABLE `comments` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) NOT NULL,
+  `content` text NOT NULL,
+  `blog_id` int(11) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 ```
 
 Execute following command to run the application:
@@ -68,7 +77,7 @@ make run
 ## Development Task List
 
 - Blogs :heavy_check_mark:
-- Comments :heavy_multiplication_x:
+- Comments :heavy_check_mark:
 - Authentication :heavy_multiplication_x:
 - Documentation :heavy_multiplication_x:
 - Detailed Tutorial :heavy_multiplication_x:
