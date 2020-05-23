@@ -16,22 +16,24 @@ This is an experimental blogging API powered by [deno](https://deno.land/), [oak
 │   └── server.ts
 ├── app.ts
 ├── controllers
-│   ├── blogs.ts
-│   └── comments.ts
+│   ├── auth.ts
+│   └── blogs.ts
 ├── db
 │   └── mysql.ts
 ├── helpers
+│   └── between.ts
 ├── makefile
 ├── middleware
+│   ├── authorize.ts
 │   ├── error.ts
 │   ├── logger.ts
 │   └── timer.ts
 ├── models
 │   ├── Blog.ts
-│   ├── Comment.ts
+│   └── User.ts
 └── routes
+    ├── auth.ts
     ├── blogs.ts
-    ├── comments.ts
     └── home.ts
 ```
 
@@ -48,19 +50,19 @@ CREATE TABLE `blogs` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `title` varchar(255) NOT NULL,
   `content` text NOT NULL,
-  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `slug` varchar(255) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
-CREATE TABLE `comments` (
+CREATE TABLE `users` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
-  `content` text NOT NULL,
-  `blog_id` int(11) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `password` varchar(255) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 ```
 
 Execute following command to run the application:
@@ -80,7 +82,6 @@ make run
 ## Development Task List
 
 - Blogs :heavy_check_mark:
-- Comments :heavy_check_mark:
-- Authentication :heavy_multiplication_x:
+- Authentication :heavy_check_mark:
 - Documentation :heavy_multiplication_x:
 - Detailed Tutorial :heavy_multiplication_x:
