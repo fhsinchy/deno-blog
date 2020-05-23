@@ -35,8 +35,6 @@ export async function login(ctx: any) {
     } else if (await compare(body.value.password, user.password)) {
         const token = makeJwt({ header: { alg: 'HS256', typ: 'JWT' }, payload: { id: user.id, name: user.name, email: user.email }, key: env['TOKEN_SECRET'] });
 
-        console.log(token);
-
         ctx.response.status = Status.OK;
         ctx.response.type = 'json';
         ctx.response.body = {
