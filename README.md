@@ -6,6 +6,13 @@ This is an experimental blogging API powered by [deno](https://deno.land/), [oak
 |:------------------|
 | The code from this API should not be deemed as ideal as most all the functionalities are implemented in a very naive way. The goal was to test things out with this new runtime, not to build a production quality API. |
 
+## Development Task List
+
+- Blogs :heavy_check_mark:
+- Authentication :heavy_check_mark:
+- Documentation :heavy_check_mark:
+- Detailed Tutorial on [farhan.info](https://www.farhan.info/) :heavy_multiplication_x:
+
 ## System Requirements
 
 - [Deno 1.0+](https://deno.land/)
@@ -110,10 +117,3 @@ make run
 ```
 
 `postman-collection/deno-blog.postman_collection.json` can be imported inside [Postman](https://www.postman.com/) for testing out the endpoints.
-
-## Development Task List
-
-- Blogs :heavy_check_mark:
-- Authentication :heavy_check_mark:
-- Documentation :heavy_check_mark:
-- Detailed Tutorial on [farhan.info](https://www.farhan.info/) :heavy_multiplication_x:
