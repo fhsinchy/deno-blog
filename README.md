@@ -16,7 +16,8 @@ This is an experimental blogging API powered by [deno](https://deno.land/), [oak
 │   └── server.ts
 ├── app.ts
 ├── controllers
-│   └── blogs.ts
+│   ├── blogs.ts
+│   └── comments.ts
 ├── db
 │   └── mysql.ts
 ├── helpers
@@ -26,9 +27,11 @@ This is an experimental blogging API powered by [deno](https://deno.land/), [oak
 │   ├── logger.ts
 │   └── timer.ts
 ├── models
-│   └── Blog.ts
+│   ├── Blog.ts
+│   ├── Comment.ts
 └── routes
     ├── blogs.ts
+    ├── comments.ts
     └── home.ts
 ```
 
