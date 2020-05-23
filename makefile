@@ -1,2 +1,2 @@
 run:
-	deno run --allow-net --allow-env --allow-read app.ts
+	deno run --unstable --allow-net --allow-env --allow-read app.ts
