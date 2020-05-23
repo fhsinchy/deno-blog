@@ -15,4 +15,4 @@ app.use(home.routes())
    .use(auth.routes());
 
 console.log(`app running -> ${host}:${port}`);
-app.listen({ port });
+await app.listen({ port });
