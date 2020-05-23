@@ -1,5 +1,6 @@
-import { isHttpError, Status } from "https://deno.land/x/oak/mod.ts";
-import between from "../helpers/between.ts";
+import { isHttpError, Status } from 'https://deno.land/x/oak/mod.ts';
+
+import between from '../helpers/between.ts';
 
 export default async (ctx: any, next: any) => {
   try {

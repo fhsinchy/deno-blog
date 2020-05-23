@@ -1,4 +1,4 @@
-import { Application, isHttpError, Status } from "https://deno.land/x/oak/mod.ts";
+import { Application } from 'https://deno.land/x/oak/mod.ts';
 
 import error from '../middleware/error.ts';
 import logger from '../middleware/logger.ts';
@@ -10,7 +10,7 @@ app.use(error);
 app.use(logger);
 app.use(timer);
 
-app.addEventListener("error", (evt) => {
+app.addEventListener('error', (evt) => {
   // Will log the thrown error to the console.
   console.log(evt.error);
 });

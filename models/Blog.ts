@@ -1,4 +1,4 @@
-import { slugify } from "https://deno.land/x/slugify/mod.ts";
+import { slugify } from 'https://deno.land/x/slugify/mod.ts';
 
 import client from '../db/mysql.ts';
 
@@ -35,9 +35,13 @@ class Blog {
 
     static async findBySlug(slug: string) {
         const result = await client.execute('SELECT * FROM ?? WHERE slug = ?', [tableName, slug]);
-        const rows = result.rows;
+        const rows: any = result.rows;
+
+        if (rows.length > 0) {
+            return new this(rows[0].id, rows[0].title, rows[0].slug, rows[0].content, rows[0].created_at);
+        }
         
-        return rows ? new this(rows[0].id, rows[0].title, rows[0].slug, rows[0].content, rows[0].created_at) : null;
+        return null;
     }
 
     async save() {

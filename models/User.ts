@@ -1,4 +1,5 @@
-import { hash } from "https://deno.land/x/bcrypt/mod.ts";
+import { hash } from 'https://deno.land/x/bcrypt/mod.ts';
+
 import client from '../db/mysql.ts';
 
 const tableName = 'users';
