@@ -17,7 +17,7 @@ export default async (ctx: any, next: any) => {
 
             ctx.request.user = payload;
 
-            next();
+            await next();
         } catch(err) {
             ctx.throw(Status.Unauthorized);
         }
