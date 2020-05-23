@@ -2,10 +2,23 @@
 
 This is an experimental blogging API powered by [deno](https://deno.land/), [oak](https://github.com/oakserver/oak) and MySQL.
 
-## Requirements
+| :warning: WARNING |
+|:------------------|
+| The code from this API should not be deemed as ideal as most all the functionalities are implemented in a very naive way. The goal was to test things out with this new runtime, not to build a production quality API. |
 
-- Deno 1.0
-- MySQL 5+
+## System Requirements
+
+- [Deno 1.0+](https://deno.land/)
+- [MySQL 5+](https://www.mysql.com/downloads/)
+
+## Libraries Used
+
+- [oak](https://deno.land/x/oak)
+- [deno_mysql](https://deno.land/x/mysql)
+- [bcrypt](https://deno.land/x/bcrypt)
+- [djwt](https://deno.land/x/djwt)
+
+> Working knowledge of [Express](https://expressjs.com/) or [Koa](https://koajs.com/) is required.
 
 ## Project Structure
 
@@ -37,13 +50,32 @@ This is an experimental blogging API powered by [deno](https://deno.land/), [oak
     └── home.ts
 ```
 
-> TODO: add project structure explanation.
+There are seven directories in the project:
+
+- `api` contains `server.ts`, responsible for initiating the application instance. It also registers three universal middleware.
+- `controllers` directory contains logic for all the api endpoints. Logic for a certain endpoint is encapsulated inside relevantly named file.
+  - `auth.ts` contains logic regarding registration of users and generation of JWT tokens.
+  - `blogs.ts` contains logic regarding CRUD operations of blog posts.
+- `db` directory contains necessary code for connecting to the database.
+- `helpers` contains small helper functions for repeated usage.
+- `middleware` folder contains middleware functions for repeated usage.
+  - `authorize.ts` handles validation of JWT tokens.
+  - `error.ts` handles all errors centrally.
+  - `logger.ts` logs all requests to the console.
+  - `timer.ts` logs request times to the console.
+- `models` contains classes containing functions for querying the database.
+- `routes` contains necessary code for registering the controller functions as middleware route endpoints.
+
+There are two orphan files in the project root:
+
+- `app.ts` is responsible for registering all endpoints to the main app instance and firing up the server.
+- `makefile` contains one function for running the application.
 
 ## Instructions
 
 Clone this repository anywhere you want. Make a copy of the `.env.example` file named `.env` and fill up the environment variables.
 
-Create a new MySQL database and use following query to create the table:
+Create a new MySQL database and use following query to create the tables:
 
 ```sql
 CREATE TABLE `blogs` (
@@ -68,7 +100,7 @@ CREATE TABLE `users` (
 Execute following command to run the application:
 
 ```bash
-deno run --allow-net --allow-env --allow-read app.ts
+deno run --unstable --allow-net --allow-env --allow-read app.ts
 ```
 
 There is also a makefile and following command can be used instead of the above one:
@@ -77,11 +109,11 @@ There is also a makefile and following command can be used instead of the above 
 make run
 ```
 
-> TODO: add detailed instructions.
+`postman-collection/deno-blog.postman_collection.json` can be imported inside [Postman](https://www.postman.com/) for testing out the endpoints.
 
 ## Development Task List
 
 - Blogs :heavy_check_mark:
 - Authentication :heavy_check_mark:
-- Documentation :heavy_multiplication_x:
-- Detailed Tutorial :heavy_multiplication_x:
+- Documentation :heavy_check_mark:
+- Detailed Tutorial on [farhan.info](https://www.farhan.info/) :heavy_multiplication_x:
