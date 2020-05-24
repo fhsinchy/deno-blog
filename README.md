@@ -31,46 +31,38 @@ This is an experimental blogging API powered by [deno](https://deno.land/), [oak
 
 ```bash
 .
+├── LICENSE
 ├── README.md
-├── api
-│   └── server.ts
 ├── app.ts
 ├── controllers
 │   ├── auth.ts
 │   └── blogs.ts
 ├── db
 │   └── mysql.ts
-├── helpers
-│   └── between.ts
 ├── makefile
 ├── middleware
 │   ├── authorize.ts
 │   ├── error.ts
 │   ├── logger.ts
 │   └── timer.ts
-├── models
-│   ├── Blog.ts
-│   └── User.ts
+├── postman-collection
+│   └── deno-blog.postman_collection.json
 └── routes
     ├── auth.ts
-    ├── blogs.ts
-    └── home.ts
+    └── blogs.ts
 ```
 
-There are seven directories in the project:
+There are four directories in the project:
 
-- `api` contains `server.ts`, responsible for initiating the application instance. It also registers three universal middleware.
 - `controllers` directory contains logic for all the api endpoints. Logic for a certain endpoint is encapsulated inside relevantly named file.
   - `auth.ts` contains logic regarding registration of users and generation of JWT tokens.
   - `blogs.ts` contains logic regarding CRUD operations of blog posts.
 - `db` directory contains necessary code for connecting to the database.
-- `helpers` contains small helper functions for reusability.
 - `middleware` directory contains middleware functions for reusability.
   - `authorize.ts` handles validation of JWT tokens.
   - `error.ts` handles all errors centrally.
   - `logger.ts` logs all requests to the console.
   - `timer.ts` logs request times to the console.
-- `models` contains classes containing functions for querying the database.
 - `routes` contains necessary code for registering the controller functions as middleware route endpoints.
 
 There are two orphan files in the project root:
@@ -80,7 +72,7 @@ There are two orphan files in the project root:
 
 ## Instructions
 
-Clone this repository anywhere you want. Make a copy of the `.env.example` file named `.env` and fill up the environment variables.
+Clone this repository anywhere you want.
 
 Create a new MySQL database and use following query to create the tables:
 
@@ -107,7 +99,7 @@ CREATE TABLE `users` (
 Execute following command to run the application:
 
 ```bash
-deno run --unstable --allow-net --allow-env --allow-read app.ts
+deno run --unstable --allow-net app.ts
 ```
 
 There is also a makefile and following command can be used instead of the above one:

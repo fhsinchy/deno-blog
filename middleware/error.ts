@@ -1,7 +1,5 @@
 import { isHttpError, Status } from 'https://deno.land/x/oak/mod.ts';
 
-import between from '../helpers/between.ts';
-
 export default async (ctx: any, next: any) => {
   try {
     await next();
@@ -18,9 +16,9 @@ export default async (ctx: any, next: any) => {
       ctx.response.status = status;
       ctx.response.type = 'json';
       ctx.response.body = {
-          status: between(status, 400, 500) ? 'fail' : 'error',
+          status: status >= 400 && status < 500 ? 'fail' : 'error',
           message: err.message,
-      }
+      };
     }
   }
 }

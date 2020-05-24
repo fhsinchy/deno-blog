@@ -1,18 +1,32 @@
-import app from './api/server.ts';
-import { config } from "https://deno.land/x/dotenv/mod.ts";
+import { Application, Router, Status } from 'https://deno.land/x/oak/mod.ts';
 
-import home from './routes/home.ts';
+import logger from './middleware/logger.ts';
+import timer from './middleware/timer.ts';
+import error from './middleware/error.ts';
+
 import blogs from './routes/blogs.ts';
 import auth from './routes/auth.ts';
 
-const env = config();
+const app = new Application();
+const router = new Router();
 
-const host = env['HOST'] || 'http://127.0.0.1'
-const port = parseInt(env['PORT']);
+app.use(logger);
+app.use(timer);
+app.use(error);
 
-app.use(home.routes())
+router.get('/', (ctx) => {
+  ctx.response.status = Status.OK;
+  ctx.response.type = 'json';
+  ctx.response.body = {
+    status: 'success',
+    message: 'Hello World!',
+    data: null,
+  };
+});
+
+app.use(router.routes())
    .use(blogs.routes())
    .use(auth.routes());
 
-console.log(`app running -> ${host}:${port}`);
-await app.listen({ port });
+console.log('app running -> http://localhost:3000');
+await app.listen({ port: 3000 });
