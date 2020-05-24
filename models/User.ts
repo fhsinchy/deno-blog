@@ -43,21 +43,6 @@ class User {
         
         return { userId: result.lastInsertId, userCount: result.affectedRows };
     }
-
-    // static async findBySlug(slug: string) {
-    //     const result = await client.execute('SELECT * FROM ?? WHERE slug = ?', [tableName, slug]);
-    //     const rows = result.rows;
-        
-    //     return rows ? new this(rows[0].id, rows[0].title, rows[0].slug, rows[0].content, rows[0].created_at) : null;
-    // }
-
-    // async save() {
-    //     await client.execute('UPDATE ?? SET title = ?, content = ? WHERE slug = ?', [tableName, this.title, this.content, this.slug]);
-    // }
-
-    // async delete() {
-    //     await client.execute('DELETE FROM ?? WHERE slug = ?', [tableName, this.slug]);
-    // }
 }
 
 export default User;
