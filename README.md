@@ -4,7 +4,7 @@ This is an experimental blogging API powered by [deno](https://deno.land/), [oak
 
 | :bell: NOTIFICATION |
 |:--------------------|
-| This is a simplified version of the actual code base created for my medium article titled Making APIs in Deno. If you want the original code, please check the master branch. |
+| This is a simplified version of the actual code base created for my medium article titled [Making APIs in Deno](https://medium.com/@farhanhasin/making-apis-in-deno-83dedda9dd1f). If you want the original code, please check the master branch. |
 
 | :warning: WARNING |
 |:------------------|
@@ -15,7 +15,7 @@ This is an experimental blogging API powered by [deno](https://deno.land/), [oak
 - Blogs :heavy_check_mark:
 - Authentication :heavy_check_mark:
 - Documentation :heavy_check_mark:
-- Detailed Tutorial :heavy_check_mark:
+- [Detailed Tutorial](https://medium.com/@farhanhasin/making-apis-in-deno-83dedda9dd1f) :heavy_check_mark:
 
 ## System Requirements
 
@@ -28,6 +28,8 @@ This is an experimental blogging API powered by [deno](https://deno.land/), [oak
 - [deno_mysql](https://deno.land/x/mysql)
 - [bcrypt](https://deno.land/x/bcrypt)
 - [djwt](https://deno.land/x/djwt)
+- [dotenv](https://deno.land/x/dotenv)
+- [slugify](https://deno.land/x/slugify)
 
 > Working knowledge of [Express](https://expressjs.com/) or [Koa](https://koajs.com/) is required.
 
