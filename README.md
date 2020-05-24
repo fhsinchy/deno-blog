@@ -2,6 +2,10 @@
 
 This is an experimental blogging API powered by [deno](https://deno.land/), [oak](https://github.com/oakserver/oak) and MySQL.
 
+| :bell: NOTIFICATION |
+|:--------------------|
+| This is a simplified version of the actual code base created for my medium article titled Making APIs in Deno. If you want the original code, please check the master branch. |
+
 | :warning: WARNING |
 |:------------------|
 | The code from this API should not be deemed as ideal as all the functionalities are implemented in a very naive way. The goal was to test things out with this new runtime, not to build a production quality API. |
@@ -11,7 +15,7 @@ This is an experimental blogging API powered by [deno](https://deno.land/), [oak
 - Blogs :heavy_check_mark:
 - Authentication :heavy_check_mark:
 - Documentation :heavy_check_mark:
-- Detailed Tutorial on [farhan.info](https://www.farhan.info/) :heavy_multiplication_x:
+- Detailed Tutorial :heavy_check_mark:
 
 ## System Requirements
 
