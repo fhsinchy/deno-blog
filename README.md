@@ -4,7 +4,7 @@ This is an experimental blogging API powered by [deno](https://deno.land/), [oak
 
 | :warning: WARNING |
 |:------------------|
-| The code from this API should not be deemed as ideal as most all the functionalities are implemented in a very naive way. The goal was to test things out with this new runtime, not to build a production quality API. |
+| The code from this API should not be deemed as ideal as all the functionalities are implemented in a very naive way. The goal was to test things out with this new runtime, not to build a production quality API. |
 
 ## Development Task List
 
@@ -64,8 +64,8 @@ There are seven directories in the project:
   - `auth.ts` contains logic regarding registration of users and generation of JWT tokens.
   - `blogs.ts` contains logic regarding CRUD operations of blog posts.
 - `db` directory contains necessary code for connecting to the database.
-- `helpers` contains small helper functions for repeated usage.
-- `middleware` folder contains middleware functions for repeated usage.
+- `helpers` contains small helper functions for reusability.
+- `middleware` directory contains middleware functions for reusability.
   - `authorize.ts` handles validation of JWT tokens.
   - `error.ts` handles all errors centrally.
   - `logger.ts` logs all requests to the console.
@@ -116,4 +116,4 @@ There is also a makefile and following command can be used instead of the above 
 make run
 ```
 
-`postman-collection/deno-blog.postman_collection.json` can be imported inside [Postman](https://www.postman.com/) for testing out the endpoints.
+The `postman-collection/deno-blog.postman_collection.json` file can be imported inside [Postman](https://www.postman.com/) for testing out the endpoints.
