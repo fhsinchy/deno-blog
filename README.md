@@ -106,16 +106,26 @@ CREATE TABLE `users` (
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 ```
 
-Execute following command to run the application:
+Execute following command to install [denon](https://github.com/denosaurs/denon) in your system:
 
 ```bash
-deno run --unstable --allow-net --allow-env --allow-read app.ts
+make install
 ```
 
-There is also a makefile and following command can be used instead of the above one:
+Use the following command to run the server with auto reload:
 
 ```bash
 make run
 ```
+
+If you get `make: denon: No such file or directory` error execute following code:
+
+```bash
+export PATH="$HOME/.deno/bin:$PATH"
+```
+
+You can add the above mentioned line to your shell configuration for a permanent solution.
+
+## Postman Collection
 
 The `postman-collection/deno-blog.postman_collection.json` file can be imported inside [Postman](https://www.postman.com/) for testing out the endpoints.
