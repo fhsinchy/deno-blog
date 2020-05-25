@@ -27,8 +27,6 @@ This is an experimental blogging API powered by [deno](https://deno.land/), [oak
 - [dotenv](https://deno.land/x/dotenv)
 - [slugify](https://deno.land/x/slugify)
 
-> Working knowledge of [Express](https://expressjs.com/) or [Koa](https://koajs.com/) is required.
-
 ## Project Structure
 
 ```bash
