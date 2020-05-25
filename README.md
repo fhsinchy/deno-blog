@@ -31,8 +31,6 @@ This is an experimental blogging API powered by [deno](https://deno.land/), [oak
 - [dotenv](https://deno.land/x/dotenv)
 - [slugify](https://deno.land/x/slugify)
 
-> Working knowledge of [Express](https://expressjs.com/) or [Koa](https://koajs.com/) is required.
-
 ## Project Structure
 
 ```bash
@@ -105,13 +103,9 @@ CREATE TABLE `users` (
 Execute following command to run the application:
 
 ```bash
-deno run --unstable --allow-net app.ts
-```
-
-There is also a makefile and following command can be used instead of the above one:
-
-```bash
 make run
 ```
+
+## Postman Collection
 
 The `postman-collection/deno-blog.postman_collection.json` file can be imported inside [Postman](https://www.postman.com/) for testing out the endpoints.
