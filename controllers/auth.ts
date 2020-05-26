@@ -30,7 +30,6 @@ export async function register(ctx: any) {
 }
 
 export async function login(ctx: any) {
-  console.log("login hit...");
   const body = await ctx.request.body();
 
   const result = await client.execute(
