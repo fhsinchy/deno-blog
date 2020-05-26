@@ -7,6 +7,12 @@ const env = config();
 export async function register(ctx: any) {
   const body = await ctx.request.body();
 
+  const user = await User.findByEmail(body.value.email);
+
+  if (user) {
+    ctx.throw(Status.Conflict);
+  }
+
   const { userId, userCount } = await User.create(body.value);
 
   ctx.response.status = Status.Created;
