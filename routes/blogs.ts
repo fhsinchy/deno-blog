@@ -1,4 +1,4 @@
-import { Router } from "https://deno.land/x/oak/mod.ts";
+import { Router } from "../deps.ts";
 
 import authorize from "../middleware/authorize.ts";
 import { index, store, show, update, destroy } from "../controllers/blogs.ts";

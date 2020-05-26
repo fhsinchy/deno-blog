@@ -1,4 +1,4 @@
-import { hash } from "https://deno.land/x/bcrypt/mod.ts";
+import { hash } from "../deps.ts";
 
 import client from "../db/mysql.ts";
 

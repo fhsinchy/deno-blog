@@ -1,4 +1,4 @@
-import { isHttpError, Status } from "https://deno.land/x/oak/mod.ts";
+import { isHttpError, Status } from "../deps.ts";
 
 import between from "../helpers/between.ts";
 

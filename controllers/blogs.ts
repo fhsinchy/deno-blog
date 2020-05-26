@@ -1,4 +1,4 @@
-import { Status } from "https://deno.land/x/oak/mod.ts";
+import { Status } from "../deps.ts";
 
 import Blog from "../models/Blog.ts";
 

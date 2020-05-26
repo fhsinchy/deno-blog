@@ -1,5 +1,5 @@
 import app from "./api/server.ts";
-import { config } from "https://deno.land/x/dotenv/mod.ts";
+import { config } from "./deps.ts";
 
 import home from "./routes/home.ts";
 import blogs from "./routes/blogs.ts";

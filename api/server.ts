@@ -1,4 +1,4 @@
-import { Application } from "https://deno.land/x/oak/mod.ts";
+import { Application } from "../deps.ts";
 
 import error from "../middleware/error.ts";
 import logger from "../middleware/logger.ts";

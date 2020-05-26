@@ -1,4 +1,4 @@
-import { slugify } from "https://deno.land/x/slugify/mod.ts";
+import { slugify } from "../deps.ts";
 
 import client from "../db/mysql.ts";
 

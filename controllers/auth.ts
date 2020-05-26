@@ -1,7 +1,4 @@
-import { Status } from "https://deno.land/x/oak/mod.ts";
-import { compare } from "https://deno.land/x/bcrypt/mod.ts";
-import { makeJwt } from "https://deno.land/x/djwt/create.ts";
-import { config } from "https://deno.land/x/dotenv/mod.ts";
+import { Status, compare, makeJwt, config } from "../deps.ts";
 
 import User from "../models/User.ts";
 
