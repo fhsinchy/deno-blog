@@ -11,7 +11,7 @@ This is an experimental blogging API powered by [deno](https://deno.land/), [oak
 - Blogs :heavy_check_mark:
 - Authentication :heavy_check_mark:
 - Documentation :heavy_check_mark:
-- [Detailed Tutorial](https://medium.com/@farhanhasin/making-apis-in-deno-83dedda9dd1f) :heavy_check_mark:
+- [Detailed Tutorial](https://medium.com/swlh/making-apis-in-deno-83dedda9dd1f?source=friends_link&sk=396c0dee437989ba3d2c2cc46d7d5933) :heavy_check_mark:
 
 ## System Requirements
 
