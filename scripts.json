@@ -1,0 +1,8 @@
+{
+    "scripts": {
+        "dev": "denon run --unstable --allow-net --allow-env --allow-read app.ts",
+        "prod": "deno run --unstable --allow-net --allow-env --allow-read app.ts",
+        "tables:create": "deno run --allow-net --allow-env --allow-read scripts/create_tables.ts",
+        "tables:drop": "deno run --allow-net --allow-env --allow-read scripts/drop_tables.ts"
+    }
+}

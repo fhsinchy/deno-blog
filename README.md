@@ -17,6 +17,10 @@ This is an experimental blogging API powered by [deno](https://deno.land/), [oak
 
 - [Deno 1.0+](https://deno.land/)
 - [MySQL 5+](https://www.mysql.com/downloads/)
+- [denon](https://github.com/denosaurs/denon#install)
+- [velociraptor](https://github.com/umbopepato/velociraptor#install)
+
+> Please make sure you've installed `denon` and `velociraptor` from above mentioned links.
 
 ## Libraries Used
 
@@ -42,7 +46,7 @@ This is an experimental blogging API powered by [deno](https://deno.land/), [oak
 │   └── mysql.ts
 ├── helpers
 │   └── between.ts
-├── makefile
+├── scripts.json
 ├── middleware
 │   ├── authorize.ts
 │   ├── error.ts
@@ -76,53 +80,29 @@ There are seven directories in the project:
 There are two orphan files in the project root:
 
 - `app.ts` is responsible for registering all endpoints to the main app instance and firing up the server.
-- `makefile` contains one function for running the application.
+- `scripts.json` contains commands for running the application, creating and dropping database tables.
 
 ## Instructions
 
 Clone this repository anywhere you want. Make a copy of the `.env.example` file named `.env` and fill up the environment variables.
 
-Create a new MySQL database and use following query to create the tables:
-
-```sql
-CREATE TABLE `blogs` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `title` varchar(255) NOT NULL,
-  `content` text NOT NULL,
-  `slug` varchar(255) NOT NULL,
-  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
-
-CREATE TABLE `users` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) NOT NULL,
-  `email` varchar(255) NOT NULL,
-  `password` varchar(255) NOT NULL,
-  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
-```
-
-Execute following command to install [denon](https://github.com/denosaurs/denon) in your system:
+Create a new MySQL database and use following command to create the tables:
 
 ```bash
-make install
+vr run tables:create
 ```
 
-Use the following command to run the server with auto reload:
+To run the application with auto reload, use following command:
 
 ```bash
-make run
+vr run dev
 ```
 
-If you get `make: denon: No such file or directory` error execute following code:
+To get a list of all `velociraptor` scripts run following command:
 
 ```bash
-export PATH="$HOME/.deno/bin:$PATH"
+vr
 ```
-
-You can add the above mentioned line to your shell configuration for a permanent solution.
 
 ## Postman Collection
 
