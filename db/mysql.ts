@@ -1,6 +1,5 @@
-import { Client, config } from "../deps.ts";
-
-const env = config();
+import { Client } from "../deps.ts";
+import env from "../config/env.ts";
 
 const client = await new Client().connect({
   hostname: env["DB_HOST"],

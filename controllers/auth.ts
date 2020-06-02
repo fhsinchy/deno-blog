@@ -1,8 +1,7 @@
 import { Status, compare, makeJwt, config } from "../deps.ts";
+import env from "../config/env.ts";
 
 import User from "../models/User.ts";
-
-const env = config();
 
 export async function register(ctx: any) {
   const body = await ctx.request.body();
