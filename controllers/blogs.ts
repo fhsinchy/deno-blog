@@ -36,7 +36,7 @@ export async function show(ctx: any) {
   const blog = await Blog.findBySlug(ctx.params.slug);
 
   if (!blog) {
-    ctx.throw(Status.NotFound);
+    ctx.throw(Status.NotFound, "Not Found!");
   }
 
   ctx.response.status = Status.OK;
@@ -52,7 +52,7 @@ export async function update(ctx: any) {
   const blog: any = await Blog.findBySlug(ctx.params.slug);
 
   if (!blog) {
-    ctx.throw(Status.NotFound);
+    ctx.throw(Status.NotFound, "Not Found!");
   }
 
   const body = await ctx.request.body();
@@ -74,7 +74,7 @@ export async function destroy(ctx: any) {
   const blog: any = await Blog.findBySlug(ctx.params.slug);
 
   if (!blog) {
-    ctx.throw(Status.NotFound);
+    ctx.throw(Status.NotFound, "Not Found!");
   }
 
   blog.delete();

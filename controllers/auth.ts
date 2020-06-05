@@ -9,7 +9,7 @@ export async function register(ctx: any) {
   const user = await User.findByEmail(body.value.email);
 
   if (user) {
-    ctx.throw(Status.Conflict);
+    ctx.throw(Status.Conflict, "Email Address Already Taken!");
   }
 
   const { userId, userCount } = await User.create(body.value);
@@ -33,7 +33,7 @@ export async function login(ctx: any) {
   const user = await User.findByEmail(body.value.email);
 
   if (!user) {
-    ctx.throw(Status.UnprocessableEntity);
+    ctx.throw(Status.UnprocessableEntity, "Wrong Email Address!");
   } else if (await compare(body.value.password, user.password)) {
     const token = makeJwt(
       {
@@ -51,6 +51,6 @@ export async function login(ctx: any) {
       data: { accessToken: token },
     };
   } else {
-    ctx.throw(Status.Unauthorized);
+    ctx.throw(Status.Unauthorized, "Wrong Password!");
   }
 }
