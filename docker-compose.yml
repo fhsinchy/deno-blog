@@ -1,0 +1,24 @@
+version: "3.8"
+
+services: 
+    db:
+        image: mysql:5.7.30
+        command: --default-authentication-plugin=mysql_native_password --explicit_defaults_for_timestamp
+        restart: always
+        volumes: 
+            - ./docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d
+        environment:
+            MYSQL_ROOT_PASSWORD: 63eaQB9wtLqmNBpg
+            MYSQL_DATABASE: "deno-blog"
+            MYSQL_USER: "dino"
+            MYSQL_PASSWORD: guUNSPq6DN7uH3F7
+    web:
+        build: .
+        command: run --unstable --allow-net --allow-env --allow-read app.ts
+        restart: always
+        depends_on: 
+            - db
+        volumes: 
+            - ./:/usr/app
+        ports: 
+            - 3000:3000
