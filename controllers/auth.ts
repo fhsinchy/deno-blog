@@ -1,5 +1,4 @@
-import { Status, compare, makeJwt, config } from "../deps.ts";
-import env from "../config/env.ts";
+import { Status, compare, makeJwt, Jose, Payload } from "../deps.ts";
 
 import User from "../models/User.ts";
 
@@ -20,7 +19,7 @@ export async function register(ctx: any) {
     status: "success",
     message: `${userCount} user registered in database`,
     data: {
-      todo: {
+      user: {
         id: userId,
       },
     },
@@ -35,13 +34,15 @@ export async function login(ctx: any) {
   if (!user) {
     ctx.throw(Status.UnprocessableEntity, "Wrong Email Address!");
   } else if (await compare(body.value.password, user.password)) {
-    const token = makeJwt(
-      {
-        header: { alg: "HS256", typ: "JWT" },
-        payload: { id: user.id, name: user.name, email: user.email },
-        key: env["TOKEN_SECRET"],
-      },
-    );
+    const header: Jose = { alg: "HS256", typ: "JWT" };
+    const payload: Payload = {
+      id: user.id,
+      name: user.name,
+      email: user.email,
+    };
+    const key: string = Deno.env.get("TOKEN_SECRET") || "H3EgqdTJ1SqtOekMQXxwufbo2iPpu89O";
+
+    const token = makeJwt({ header, payload, key });
 
     ctx.response.status = Status.OK;
     ctx.response.type = "json";

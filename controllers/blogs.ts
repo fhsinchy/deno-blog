@@ -25,7 +25,7 @@ export async function store(ctx: any) {
     status: "success",
     message: `${blogCount} blog created in database`,
     data: {
-      todo: {
+      blog: {
         id: blogId,
       },
     },

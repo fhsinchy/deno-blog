@@ -1,12 +1,10 @@
 import { Client } from "../deps.ts";
-import env from "../config/env.ts";
 
 const client = await new Client().connect({
-  hostname: env["DB_HOST"],
-  port: parseInt(env["DB_PORT"]),
-  username: env["DB_USERNAME"],
-  password: env["DB_PASSWORD"],
-  db: env["DB_DATABASE"],
+  hostname: Deno.env.get("DB_HOST"),
+  username: Deno.env.get("DB_USER"),
+  password: Deno.env.get("DB_PASSWORD"),
+  db: Deno.env.get("DB_DATABASE"),
 });
 
 export default client;

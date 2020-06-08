@@ -22,3 +22,9 @@ services:
             - ./:/usr/app
         ports: 
             - 3000:3000
+        environment: 
+            - DB_HOST=db
+            - DB_USER=dino
+            - DB_PASSWORD=guUNSPq6DN7uH3F7
+            - DB_DATABASE=deno-blog
+            - TOKEN_SECRET=QA3GCPvnNO3e6x29dFfzbvIlP8pRNwif

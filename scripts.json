@@ -1,6 +1,0 @@
-{
-    "scripts": {
-        "dev": "denon run --unstable --allow-net --allow-env --allow-read app.ts",
-        "prod": "deno run --unstable --allow-net --allow-env --allow-read app.ts",
-    }
-}
