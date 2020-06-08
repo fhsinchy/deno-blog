@@ -1,6 +1,6 @@
 # Deno Blog
 
-This is an experimental blogging API powered by [deno](https://deno.land/), [oak](https://github.com/oakserver/oak) and MySQL.
+This is an experimental blogging API developed with [Docker](https://www.docker.com/get-started), [Deno](https://deno.land/), [Oak](https://github.com/oakserver/oak) and [MySQL](https://www.mysql.com/).
 
 | :warning: WARNING |
 |:------------------|
@@ -8,6 +8,7 @@ This is an experimental blogging API powered by [deno](https://deno.land/), [oak
 
 ## Development Task List
 
+- Dockerization :heavy_check_mark:
 - Blogs :heavy_check_mark:
 - Authentication :heavy_check_mark:
 - Documentation :heavy_check_mark:
@@ -16,11 +17,7 @@ This is an experimental blogging API powered by [deno](https://deno.land/), [oak
 ## System Requirements
 
 - [Deno 1.0+](https://deno.land/)
-- [MySQL 5+](https://www.mysql.com/downloads/)
-- [denon](https://github.com/denosaurs/denon#install)
-- [velociraptor](https://github.com/umbopepato/velociraptor#install)
-
-> Please make sure you've installed `denon` and `velociraptor` from above mentioned links.
+- [Docker](https://www.docker.com/get-started)
 
 ## Libraries Used
 
@@ -28,14 +25,13 @@ This is an experimental blogging API powered by [deno](https://deno.land/), [oak
 - [deno_mysql](https://deno.land/x/mysql)
 - [bcrypt](https://deno.land/x/bcrypt)
 - [djwt](https://deno.land/x/djwt)
-- [dotenv](https://deno.land/x/dotenv)
 - [slugify](https://deno.land/x/slugify)
 
 ## Project Structure
 
 ```bash
 .
-├── README.md
+├── Dockerfile
 ├── api
 │   └── server.ts
 ├── app.ts
@@ -44,9 +40,13 @@ This is an experimental blogging API powered by [deno](https://deno.land/), [oak
 │   └── blogs.ts
 ├── db
 │   └── mysql.ts
+├── deps.ts
+├── docker-compose.yml
+├── docker-entrypoint-initdb.d
+│   ├── blogs.sql
+│   └── users.sql
 ├── helpers
 │   └── between.ts
-├── scripts.json
 ├── middleware
 │   ├── authorize.ts
 │   ├── error.ts
@@ -61,13 +61,14 @@ This is an experimental blogging API powered by [deno](https://deno.land/), [oak
     └── home.ts
 ```
 
-There are seven directories in the project:
+There are eight directories in the project -
 
-- `api` contains `server.ts`, responsible for initiating the application instance. It also registers three universal middleware.
-- `controllers` directory contains logic for all the api endpoints. Logic for a certain endpoint is encapsulated inside relevantly named file.
+- `api` contains `server.ts`, responsible for initiating the application instance. It also registers four universal middleware.
+- `controllers` directory contains logic for all the api endpoints. Logic for a certain endpoint is encapsulated inside relevantly named files.
   - `auth.ts` contains logic regarding registration of users and generation of JWT tokens.
   - `blogs.ts` contains logic regarding CRUD operations of blog posts.
 - `db` directory contains necessary code for connecting to the database.
+- `docker-entrypoint-initdb.d` contains sql files for initializing the database.
 - `helpers` contains small helper functions for reusability.
 - `middleware` directory contains middleware functions for reusability.
   - `authorize.ts` handles validation of JWT tokens.
@@ -77,32 +78,50 @@ There are seven directories in the project:
 - `models` contains classes containing functions for querying the database.
 - `routes` contains necessary code for registering the controller functions as middleware route endpoints.
 
-There are two orphan files in the project root:
+There are four orphan files in the project root:
 
+- `Dockerfile` for building the api container.
 - `app.ts` is responsible for registering all endpoints to the main app instance and firing up the server.
-- `scripts.json` contains commands for running the application, creating and dropping database tables.
+- `deps.ts` imports and exports all the necessary dependencies.
+- `docker-compose.yml` file for building and running multi-container application.
 
 ## Instructions
 
-Clone this repository anywhere you want. Make a copy of the `.env.example` file named `.env` and fill up the environment variables.
-
-Create a new MySQL database and use following command to create the tables:
+Clone this repository anywhere you want. Open up terminal and use following command to build and run the application -
 
 ```bash
-vr run tables:create
+docker-compose up --build
 ```
 
-To run the application with auto reload, use following command:
+There will be a wall of text but look for something like following -
 
 ```bash
-vr run dev
+db_1   | 2020-06-08T17:27:05.115386Z 0 [Note] Event Scheduler: Loaded 0 events
+db_1   | 2020-06-08T17:27:05.116258Z 0 [Note] mysqld: ready for connections.
+db_1   | Version: '5.7.30'  socket: '/var/run/mysqld/mysqld.sock'  port: 3306  MySQL Community Server (GPL)
 ```
 
-To get a list of all `velociraptor` scripts run following command:
+The application should be running on http://127.0.0.1:3000 address. A postman collection containing all the routes can be found inside `postman-collection` directory.
+
+You can stop the application by pressing `control + c` combination. If you want to stop and delete all built images issue following command -
 
 ```bash
-vr
+docker-compose down
 ```
+
+Use following command if you don't want the containers and images to be deleted -
+
+```bash
+docker-compose stop
+```
+
+You can restart the application with following command -
+
+```bash
+docker-compose up
+```
+
+You can learn more about docker-compose command line interface from this link - [https://docs.docker.com/compose/reference/](https://docs.docker.com/compose/reference/)
 
 ## Postman Collection
 
