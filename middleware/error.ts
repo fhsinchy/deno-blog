@@ -7,7 +7,7 @@ export default async (ctx: any, next: any) => {
     const status = ctx.response.status || Status.NotFound;
 
     if (status === Status.NotFound) {
-      ctx.throw(Status.NotFound);
+      ctx.throw(Status.NotFound, "Not Found!");
     }
   } catch (err) {
     if (isHttpError(err)) {

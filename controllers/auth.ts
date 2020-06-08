@@ -1,6 +1,6 @@
 import { Status } from "https://deno.land/x/oak/mod.ts";
 import { hash, compare } from "https://deno.land/x/bcrypt/mod.ts";
-import { makeJwt } from "https://deno.land/x/djwt/create.ts";
+import { makeJwt, Jose, Payload } from "https://deno.land/x/djwt/create.ts";
 
 import client from "../db/mysql.ts";
 
@@ -41,7 +41,7 @@ export async function login(ctx: any) {
   let user: any;
 
   if (rows.length > 0) {
-    user = {
+    const user = {
       id: rows[0].id,
       name: rows[0].name,
       email: rows[0].email,
@@ -50,11 +50,16 @@ export async function login(ctx: any) {
     };
 
     if (await compare(body.value.password, user.password)) {
-      const token = makeJwt({
-        header: { alg: "HS256", typ: "JWT" },
-        payload: { id: user.id, name: user.name, email: user.email },
-        key: "VERY_SECRET_STRING",
-      });
+      const header: Jose = { alg: "HS256", typ: "JWT" };
+      const payload: Payload = {
+        id: user.id,
+        name: user.name,
+        email: user.email,
+      };
+      const key: string = Deno.env.get("TOKEN_SECRET") ||
+        "H3EgqdTJ1SqtOekMQXxwufbo2iPpu89O";
+
+      const token = makeJwt({ header, payload, key });
 
       ctx.response.status = Status.OK;
       ctx.response.type = "json";

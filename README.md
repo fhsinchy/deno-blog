@@ -1,10 +1,10 @@
 # Deno Blog
 
-This is an experimental blogging API powered by [deno](https://deno.land/), [oak](https://github.com/oakserver/oak) and MySQL.
+This is an experimental blogging API developed with [Docker](https://www.docker.com/get-started), [Deno](https://deno.land/), [Oak](https://github.com/oakserver/oak) and [MySQL](https://www.mysql.com/).
 
 | :bell: NOTIFICATION |
 |:--------------------|
-| This is a simplified version of the actual code base created for my medium article titled [Making APIs in Deno](https://medium.com/@farhanhasin/making-apis-in-deno-83dedda9dd1f). If you want the original code, please check the master branch. |
+| This is a simplified version of the actual code base created for a medium article. If you want the original code, please check the master branch. |
 
 | :warning: WARNING |
 |:------------------|
@@ -12,15 +12,16 @@ This is an experimental blogging API powered by [deno](https://deno.land/), [oak
 
 ## Development Task List
 
+- Dockerization :heavy_check_mark:
 - Blogs :heavy_check_mark:
 - Authentication :heavy_check_mark:
 - Documentation :heavy_check_mark:
-- [Detailed Tutorial](https://medium.com/swlh/making-apis-in-deno-83dedda9dd1f?source=friends_link&sk=396c0dee437989ba3d2c2cc46d7d5933) :heavy_check_mark:
+- Detailed Tutorial :heavy_multiplication_x:
 
 ## System Requirements
 
 - [Deno 1.0+](https://deno.land/)
-- [MySQL 5+](https://www.mysql.com/downloads/)
+- [Docker](https://www.docker.com/get-started)
 
 ## Libraries Used
 
@@ -28,83 +29,94 @@ This is an experimental blogging API powered by [deno](https://deno.land/), [oak
 - [deno_mysql](https://deno.land/x/mysql)
 - [bcrypt](https://deno.land/x/bcrypt)
 - [djwt](https://deno.land/x/djwt)
-- [dotenv](https://deno.land/x/dotenv)
 - [slugify](https://deno.land/x/slugify)
 
 ## Project Structure
 
 ```bash
 .
-├── LICENSE
-├── README.md
+├── Dockerfile
+├── api
+│   └── server.ts
 ├── app.ts
 ├── controllers
-│   ├── auth.ts
-│   └── blogs.ts
+│   ├── auth.ts
+│   └── blogs.ts
 ├── db
-│   └── mysql.ts
-├── makefile
+│   └── mysql.ts
+├── docker-compose.yml
+├── docker-entrypoint-initdb.d
+│   ├── blogs.sql
+│   └── users.sql
 ├── middleware
-│   ├── authorize.ts
-│   ├── error.ts
-│   ├── logger.ts
-│   └── timer.ts
-├── postman-collection
-│   └── deno-blog.postman_collection.json
+│   ├── authorize.ts
+│   ├── error.ts
+│   ├── logger.ts
+│   └── timer.ts
 └── routes
     ├── auth.ts
     └── blogs.ts
 ```
 
-There are four directories in the project:
+There are eight directories in the project -
 
-- `controllers` directory contains logic for all the api endpoints. Logic for a certain endpoint is encapsulated inside relevantly named file.
+- `api` contains `server.ts`, responsible for initiating the application instance. It also registers four universal middleware.
+- `controllers` directory contains logic for all the api endpoints. Logic for a certain endpoint is encapsulated inside relevantly named files.
   - `auth.ts` contains logic regarding registration of users and generation of JWT tokens.
   - `blogs.ts` contains logic regarding CRUD operations of blog posts.
 - `db` directory contains necessary code for connecting to the database.
+- `docker-entrypoint-initdb.d` contains sql files for initializing the database.
 - `middleware` directory contains middleware functions for reusability.
   - `authorize.ts` handles validation of JWT tokens.
   - `error.ts` handles all errors centrally.
   - `logger.ts` logs all requests to the console.
   - `timer.ts` logs request times to the console.
+- `models` contains classes containing functions for querying the database.
 - `routes` contains necessary code for registering the controller functions as middleware route endpoints.
 
-There are two orphan files in the project root:
+There are four orphan files in the project root:
 
+- `Dockerfile` for building the api container.
 - `app.ts` is responsible for registering all endpoints to the main app instance and firing up the server.
-- `makefile` contains one function for running the application.
+- `docker-compose.yml` file for building and running multi-container application.
 
 ## Instructions
 
-Clone this repository anywhere you want.
-
-Create a new MySQL database and use following query to create the tables:
-
-```sql
-CREATE TABLE `blogs` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `title` varchar(255) NOT NULL,
-  `content` text NOT NULL,
-  `slug` varchar(255) NOT NULL,
-  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
-
-CREATE TABLE `users` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) NOT NULL,
-  `email` varchar(255) NOT NULL,
-  `password` varchar(255) NOT NULL,
-  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
-```
-
-Execute following command to run the application:
+Clone this repository anywhere you want. Open up terminal and use following command to build and run the application -
 
 ```bash
-make run
+docker-compose up --build
 ```
+
+There will be a wall of text but look for something like following -
+
+```bash
+db_1   | 2020-06-08T17:27:05.115386Z 0 [Note] Event Scheduler: Loaded 0 events
+db_1   | 2020-06-08T17:27:05.116258Z 0 [Note] mysqld: ready for connections.
+db_1   | Version: '5.7.30'  socket: '/var/run/mysqld/mysqld.sock'  port: 3306  MySQL Community Server (GPL)
+```
+
+The application should be running on http://127.0.0.1:3000 address. A postman collection containing all the routes can be found inside `postman-collection` directory.
+
+You can stop the application by pressing `control + c` combination. If you want to stop and delete all built images issue following command -
+
+```bash
+docker-compose down
+```
+
+Use following command if you don't want the containers and images to be deleted -
+
+```bash
+docker-compose stop
+```
+
+You can restart the application with following command -
+
+```bash
+docker-compose up
+```
+
+You can learn more about docker-compose command line interface from [Compose command-line reference](https://docs.docker.com/compose/reference/)
 
 ## Postman Collection
 

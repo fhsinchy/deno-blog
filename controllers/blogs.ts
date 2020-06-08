@@ -33,7 +33,7 @@ export async function store(ctx: any) {
     status: "success",
     message: `${result.affectedRows} blog created in database`,
     data: {
-      todo: {
+      blog: {
         id: result.lastInsertId,
       },
     },
@@ -48,7 +48,7 @@ export async function show(ctx: any) {
   const rows: any = result.rows;
 
   if (rows.length > 0) {
-    const blog = {
+    const blog: Blog = {
       id: rows[0].id,
       title: rows[0].title,
       content: rows[0].content,

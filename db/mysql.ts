@@ -1,11 +1,10 @@
 import { Client } from "https://deno.land/x/mysql/mod.ts";
 
 const client = await new Client().connect({
-  hostname: "192.168.10.10",
-  port: 3306,
-  username: "homestead",
-  password: "secret",
-  db: "deno-blog",
+  hostname: Deno.env.get("DB_HOST"),
+  username: Deno.env.get("DB_USER"),
+  password: Deno.env.get("DB_PASSWORD"),
+  db: Deno.env.get("DB_DATABASE"),
 });
 
 export default client;
