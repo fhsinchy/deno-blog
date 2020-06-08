@@ -121,7 +121,7 @@ You can restart the application with following command -
 docker-compose up
 ```
 
-You can learn more about docker-compose command line interface from this link - [https://docs.docker.com/compose/reference/](https://docs.docker.com/compose/reference/)
+You can learn more about docker-compose command line interface from [Compose command-line reference](https://docs.docker.com/compose/reference/)
 
 ## Postman Collection
 
