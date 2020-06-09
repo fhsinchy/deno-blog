@@ -36,8 +36,6 @@ This is an experimental blogging API developed with [Docker](https://www.docker.
 ```bash
 .
 ├── Dockerfile
-├── api
-│   └── server.ts
 ├── app.ts
 ├── controllers
 │   ├── auth.ts
