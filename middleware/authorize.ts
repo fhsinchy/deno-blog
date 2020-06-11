@@ -9,8 +9,9 @@ export default async (ctx: any, next: any) => {
     const token = authHeader.split(" ")[1];
 
     try {
-      const key: string = Deno.env.get("TOKEN_SECRET") || "H3EgqdTJ1SqtOekMQXxwufbo2iPpu89O"
-      
+      const key: string = Deno.env.get("TOKEN_SECRET") ||
+        "H3EgqdTJ1SqtOekMQXxwufbo2iPpu89O";
+
       const { payload }: any = await validateJwt(token, key);
 
       ctx.request.user = payload;

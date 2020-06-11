@@ -40,7 +40,8 @@ export async function login(ctx: any) {
       name: user.name,
       email: user.email,
     };
-    const key: string = Deno.env.get("TOKEN_SECRET") || "H3EgqdTJ1SqtOekMQXxwufbo2iPpu89O";
+    const key: string = Deno.env.get("TOKEN_SECRET") ||
+      "H3EgqdTJ1SqtOekMQXxwufbo2iPpu89O";
 
     const token = makeJwt({ header, payload, key });
 
