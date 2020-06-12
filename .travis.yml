@@ -5,3 +5,6 @@ services:
     
 before_install:
     docker build -t fhsinchy/deno-blog .
+
+script:
+    docker run fhsinchy/deno-blog deno test --allow-env tests/version.test.ts
