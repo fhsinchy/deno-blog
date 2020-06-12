@@ -1,14 +1,26 @@
-import app from "./api/server.ts";
+import { Application } from "./deps.ts";
+
+import error from "./middleware/error.ts";
+import logger from "./middleware/logger.ts";
+import timer from "./middleware/timer.ts";
 
 import home from "./routes/home.ts";
 import blogs from "./routes/blogs.ts";
 import auth from "./routes/auth.ts";
 
-const port = 3000;
+const app = new Application();
+
+app.use(error);
+app.use(logger);
+app.use(timer);
 
 app.use(home.routes())
   .use(blogs.routes())
   .use(auth.routes());
 
-console.log(`app running -> http://127.0.0.1:${port}`);
-await app.listen({ port });
+app.addEventListener("error", (evt) => {
+  // Will log the thrown error to the console.
+  console.log(evt.error);
+});
+
+export default app;
