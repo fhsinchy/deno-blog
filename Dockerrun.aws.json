@@ -3,7 +3,7 @@
 	"containerDefinitions": [{
 		"name": "api",
 		"image": "fhsinchy/deno-blog",
-		"hostname": "client",
+		"hostname": "api",
 		"essential": false,
 		"portMappings": [{
 			"hostPort": 3000,
