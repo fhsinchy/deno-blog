@@ -1,5 +1,5 @@
 {
-	"AWSDockerrunVersion": 2,
+	"AWSEBDockerrunVersion": 2,
 	"containerDefinitions": [{
 		"name": "api",
 		"image": "fhsinchy/deno-blog",
