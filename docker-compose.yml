@@ -15,8 +15,6 @@ services:
     api:
         build: .
         restart: always
-        depends_on: 
-            - db
         volumes: 
             - ./:/usr/app
         ports: 

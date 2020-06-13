@@ -9,9 +9,9 @@ before_install:
 script:
     - docker run fhsinchy/deno-blog test --allow-env tests/version.test.ts
 
-after_success:
-    - docker login -u fhsinchy -p "$DOCKER_PASSWORD"
-    - docker push fhsinchy/deno-blog
+# after_success:
+#     - docker login -u fhsinchy -p "$DOCKER_PASSWORD"
+#     - docker push fhsinchy/deno-blog
 
 deploy:
     provider: elasticbeanstalk
