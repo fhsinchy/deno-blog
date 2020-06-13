@@ -1,4 +1,4 @@
-# Deno Blog
+# Deno Blog [![Build Status](https://travis-ci.com/fhsinchy/deno-blog.svg?branch=master)](https://travis-ci.com/fhsinchy/deno-blog)
 
 This is an experimental blogging API developed with [Docker](https://www.docker.com/get-started), [Deno](https://deno.land/), [Oak](https://github.com/oakserver/oak) and [MySQL](https://www.mysql.com/).
 
