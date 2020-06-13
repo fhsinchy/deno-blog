@@ -1,0 +1,13 @@
+{
+	"AWSDockerrunVersion": 2,
+	"containerDefinitions": [{
+		"name": "api",
+		"image": "fhsinchy/deno-blog",
+		"hostname": "client",
+		"essential": false,
+		"portMappings": [{
+			"hostPort": 3000,
+			"containerPort": 3000
+		}]
+	}]
+}
