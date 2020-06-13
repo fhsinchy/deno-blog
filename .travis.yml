@@ -4,10 +4,10 @@ services:
     - docker
     
 before_install:
-    - docker build -t fhsinchy/test-deno-blog -f test-Dockerfile .
+    - docker build -t fhsinchy/deno-blog .
 
 script:
-    - docker run fhsinchy/test-deno-blog
+    - docker run fhsinchy/deno-blog test --allow-env tests/version.test.ts
 
 # deploy:
 #     provider: elasticbeanstalk
