@@ -14,7 +14,6 @@ services:
             MYSQL_ROOT_PASSWORD: 63eaQB9wtLqmNBpg
     api:
         build: .
-        command: run --unstable --allow-net --allow-env --allow-read bin/server.ts
         restart: always
         depends_on: 
             - db
