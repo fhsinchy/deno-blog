@@ -10,7 +10,7 @@ script:
     - docker run fhsinchy/deno-blog test --allow-env tests/version.test.ts
 
 after_success:
-    - echo $DOCKER_PASSWORD | docker login -u fhsinchy
+    - docker login -u fhsinchy -p "$DOCKER_PASSWORD"
     - docker push fhsinchy/deno-blog
 
 # deploy:
