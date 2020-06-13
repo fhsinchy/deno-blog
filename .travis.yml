@@ -13,17 +13,17 @@ after_success:
     - docker login -u fhsinchy -p "$DOCKER_PASSWORD"
     - docker push fhsinchy/deno-blog
 
-# deploy:
-#     provider: elasticbeanstalk
-#     region: "us-east-2"
-#     app: "deno-blog"
-#     env: "DenoBlog-env"
-#     bucket_name: "elasticbeanstalk-us-east-2-890476563482"
-#     bucket_path: "deno-blog"
+deploy:
+    provider: elasticbeanstalk
+    region: "us-east-2"
+    app: "deno-blog"
+    env: "DenoBlog-env"
+    bucket_name: "elasticbeanstalk-us-east-2-890476563482"
+    bucket_path: "deno-blog"
 
-# on:
-#     branch: master
+on:
+    branch: master
 
-# access_key_id: $AWS_IAM_USER_ID
-# secret_access_key:
-#     secure: "$AWS_IAM_USER_SECRET"
+access_key_id: "$AWS_IAM_USER_ID"
+secret_access_key:
+    secure: "$AWS_IAM_USER_SECRET"
