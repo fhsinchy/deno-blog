@@ -20,8 +20,7 @@ deploy:
     env: "DenoBlog-env"
     bucket_name: "elasticbeanstalk-us-east-2-890476563482"
     bucket_path: "deno-blog"
-    access_key_id: 
-        secure: $AWS_ACCESS_KEY_ID
+    access_key_id: $AWS_ACCESS_KEY_ID
     secret_access_key:
         secure: "$AWS_SECRET_ACCESS_KEY"
     on:
