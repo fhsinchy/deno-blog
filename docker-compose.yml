@@ -8,13 +8,10 @@ services:
         volumes: 
             - ./docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d
         environment:
-            MYSQL_USER: "dino"
-            MYSQL_DATABASE: "deno-blog"
-            MYSQL_PASSWORD: guUNSPq6DN7uH3F7
+            MYSQL_DATABASE: "denoblog"
             MYSQL_ROOT_PASSWORD: 63eaQB9wtLqmNBpg
     api:
         build: .
-        command: run --unstable --allow-net --allow-env --allow-read app.ts
         restart: always
         depends_on: 
             - db
@@ -24,7 +21,7 @@ services:
             - 3000:3000
         environment: 
             - DB_HOST=db # this should be identical to the database service name
-            - DB_USER=dino
-            - DB_DATABASE=deno-blog
-            - DB_PASSWORD=guUNSPq6DN7uH3F7
+            - DB_USER=root
+            - DB_DATABASE=denoblog
+            - DB_PASSWORD=63eaQB9wtLqmNBpg
             - TOKEN_SECRET=QA3GCPvnNO3e6x29dFfzbvIlP8pRNwif
