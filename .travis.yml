@@ -8,15 +8,3 @@ before_install:
 
 script:
     - docker run fhsinchy/deno-blog test --allow-env tests/version.test.ts
-
-deploy:
-    provider: elasticbeanstalk
-    region: "us-east-2"
-    app: "deno-blog"
-    env: "DenoBlog-env"
-    bucket_name: "elasticbeanstalk-us-east-2-890476563482"
-    bucket_path: "deno-blog"
-    access_key_id: $AWS_ACCESS_KEY_ID
-    secret_access_key: "$AWS_SECRET_ACCESS_KEY"
-    on:
-        branch: master
