@@ -48,7 +48,7 @@ export async function show(ctx: any) {
   const rows: any = result.rows;
 
   if (rows.length > 0) {
-    const blog: Blog = {
+    const blog = {
       id: rows[0].id,
       title: rows[0].title,
       content: rows[0].content,
