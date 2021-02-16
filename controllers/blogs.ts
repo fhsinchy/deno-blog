@@ -1,5 +1,4 @@
-import { Status } from "https://deno.land/x/oak/mod.ts";
-import { slugify } from "https://deno.land/x/slugify/mod.ts";
+import { Status, slugify } from "../deps.ts";
 
 import client from "../db/mysql.ts";
 

@@ -2,16 +2,22 @@ version: "3.8"
 
 services: 
     db:
-        image: mysql:5.7.30 # https://hub.docker.com/_/mysql
+        image: mysql:latest
+        container_name: deno-blog-db-dev
         command: --default-authentication-plugin=mysql_native_password --explicit_defaults_for_timestamp
         restart: always
         volumes: 
             - ./docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d
+            - db-data:/var/lib/mysql
         environment:
-            MYSQL_DATABASE: "denoblog"
-            MYSQL_ROOT_PASSWORD: 63eaQB9wtLqmNBpg
+            MYSQL_DATABASE: blog
+            MYSQL_ROOT_PASSWORD: password
     api:
-        build: .
+        build:
+            context: ./
+            dockerfile: Dockerfile.dev
+        image: deno-blog-api:dev
+        container_name: deno-blog-api-dev
         restart: always
         depends_on: 
             - db
@@ -22,6 +28,10 @@ services:
         environment: 
             - DB_HOST=db # this should be identical to the database service name
             - DB_USER=root
-            - DB_DATABASE=denoblog
-            - DB_PASSWORD=63eaQB9wtLqmNBpg
-            - TOKEN_SECRET=QA3GCPvnNO3e6x29dFfzbvIlP8pRNwif
+            - DB_DATABASE=blog
+            - DB_PASSWORD=password
+            - TOKEN_SECRET=secret
+
+volumes:
+    db-data:
+        name: deno-blog-db-dev-data
