@@ -1,5 +1,5 @@
-import { Status } from "https://deno.land/x/oak/mod.ts";
-import { validateJwt } from "https://deno.land/x/djwt/validate.ts";
+import { Status } from "https://deno.land/x/oak@v6.5.0/mod.ts";
+import { verify } from "https://deno.land/x/djwt@v2.2/mod.ts";
 
 export default async (ctx: any, next: any) => {
   const authHeader = ctx.request.headers.get("authorization");
@@ -11,9 +11,9 @@ export default async (ctx: any, next: any) => {
 
     try {
       const key: string = Deno.env.get("TOKEN_SECRET") ||
-        "H3EgqdTJ1SqtOekMQXxwufbo2iPpu89O";
+        "secret";
 
-      const { payload }: any = await validateJwt(token, key);
+      const { payload }: any = await verify(token, key, "HS256");
 
       ctx.request.user = payload;
 

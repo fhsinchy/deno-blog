@@ -1,4 +1,4 @@
-import { Application, Router, Status } from "https://deno.land/x/oak/mod.ts";
+import { Application, Router, Status } from "./deps.ts";
 
 import logger from "./middleware/logger.ts";
 import timer from "./middleware/timer.ts";

@@ -1,7 +1,7 @@
-import { Router } from "https://deno.land/x/oak/mod.ts";
+import { Router } from "../deps.ts";
 
 import authorize from "../middleware/authorize.ts";
-import { index, show, store, update, destroy } from "../controllers/blogs.ts";
+import { destroy, index, show, store, update } from "../controllers/blogs.ts";
 
 const router = new Router();
 

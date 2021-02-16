@@ -1,4 +1,4 @@
-import { Client } from "https://deno.land/x/mysql/mod.ts";
+import { Client } from "../deps.ts";
 
 const client = await new Client().connect({
   hostname: Deno.env.get("DB_HOST"),
