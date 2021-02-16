@@ -1,4 +1,4 @@
-import { Status, compare, makeJwt, Jose, Payload } from "../deps.ts";
+import { Status, compare, create, Header, Payload } from "../deps.ts";
 
 import User from "../models/User.ts";
 
@@ -34,16 +34,16 @@ export async function login(ctx: any) {
   if (!user) {
     ctx.throw(Status.UnprocessableEntity, "Wrong Email Address!");
   } else if (await compare(body.value.password, user.password)) {
-    const header: Jose = { alg: "HS256", typ: "JWT" };
+    const header: Header = { alg: "HS256", typ: "JWT" };
     const payload: Payload = {
       id: user.id,
       name: user.name,
       email: user.email,
     };
     const key: string = Deno.env.get("TOKEN_SECRET") ||
-      "H3EgqdTJ1SqtOekMQXxwufbo2iPpu89O";
+      "secret";
 
-    const token = makeJwt({ header, payload, key });
+    const token = create(header, payload, key);
 
     ctx.response.status = Status.OK;
     ctx.response.type = "json";

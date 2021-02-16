@@ -1,4 +1,4 @@
-# Deno Blog [![Build Status](https://travis-ci.com/fhsinchy/deno-blog.svg?branch=master)](https://travis-ci.com/fhsinchy/deno-blog)
+# Deno Blog
 
 This is an experimental blogging API developed with [Docker](https://www.docker.com/get-started), [Deno](https://deno.land/), [Oak](https://github.com/oakserver/oak) and [MySQL](https://www.mysql.com/).
 
@@ -13,7 +13,6 @@ This is an experimental blogging API developed with [Docker](https://www.docker.
 - Authentication :heavy_check_mark:
 - Documentation :heavy_check_mark:
 - [Development Tutorial](https://dev.to/fhsinchy/develop-and-dockerize-a-blogging-api-with-deno-oak-and-mysql-170e) :heavy_check_mark:
-- [Deployment Tutorial](https://dev.to/fhsinchy/deploy-a-deno-application-on-aws-using-docker-and-travis-ci-4p8o) :heavy_check_mark:
 
 ## System Requirements
 
@@ -33,8 +32,6 @@ This is an experimental blogging API developed with [Docker](https://www.docker.
 ```bash
 .
 ├── Dockerfile
-├── api
-│   └── server.ts
 ├── app.ts
 ├── controllers
 │   ├── auth.ts

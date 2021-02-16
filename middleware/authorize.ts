@@ -1,4 +1,4 @@
-import { Status, validateJwt } from "../deps.ts";
+import { Status, verify } from "../deps.ts";
 
 export default async (ctx: any, next: any) => {
   const authHeader = ctx.request.headers.get("authorization");
@@ -10,9 +10,9 @@ export default async (ctx: any, next: any) => {
 
     try {
       const key: string = Deno.env.get("TOKEN_SECRET") ||
-        "H3EgqdTJ1SqtOekMQXxwufbo2iPpu89O";
+        "secret";
 
-      const { payload }: any = await validateJwt(token, key);
+      const { payload }: any = await verify(token, key, "HS256");
 
       ctx.request.user = payload;
 

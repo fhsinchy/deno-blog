@@ -9,6 +9,7 @@ import blogs from "./routes/blogs.ts";
 import auth from "./routes/auth.ts";
 
 const app = new Application();
+const port = 3000;
 
 app.use(error);
 app.use(logger);
@@ -23,4 +24,5 @@ app.addEventListener("error", (evt) => {
   console.log(evt.error);
 });
 
-export default app;
+console.log(`app running -> http://127.0.0.1:${port}`);
+await app.listen({ port });
