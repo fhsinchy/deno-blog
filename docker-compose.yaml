@@ -14,7 +14,7 @@ services:
             MYSQL_ROOT_PASSWORD: password
     api:
         build:
-            context: ./api
+            context: ./
             dockerfile: Dockerfile.dev
         image: deno-blog-api:dev
         container_name: deno-blog-api-dev
@@ -22,7 +22,7 @@ services:
         depends_on: 
             - db
         volumes: 
-            - ./api:/usr/app
+            - ./:/usr/app
         ports: 
             - 3000:3000
         environment: 
