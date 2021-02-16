@@ -13,7 +13,9 @@ services:
             MYSQL_DATABASE: blog
             MYSQL_ROOT_PASSWORD: password
     api:
-        build: ./api
+        build:
+            context: ./api
+            dockerfile: Dockerfile.dev
         image: deno-blog-api:dev
         container_name: deno-blog-api-dev
         restart: always
