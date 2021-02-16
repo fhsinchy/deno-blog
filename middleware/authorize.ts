@@ -1,5 +1,4 @@
-import { Status } from "https://deno.land/x/oak@v6.5.0/mod.ts";
-import { verify } from "https://deno.land/x/djwt@v2.2/mod.ts";
+import { Status, verify } from "../deps.ts";
 
 export default async (ctx: any, next: any) => {
   const authHeader = ctx.request.headers.get("authorization");
